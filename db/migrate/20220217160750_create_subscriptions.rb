@@ -1,19 +1,19 @@
 class CreateSubscriptions < ActiveRecord::Migration[6.0]
   def up
     create_table :subscriptions do |t|
-      t.bigint :subscriber_user_id
-      t.bigint :subscribed_user_id
+      t.bigint :from_user_id
+      t.bigint :for_user_id # subscribers
 
       t.timestamps
     end
 
-    add_index :subscriptions, :subscriber_user_id
-    add_index :subscriptions, :subscribed_user_id
+    add_index :subscriptions, :from_user_id
+    add_index :subscriptions, :for_user_id
     add_index(
       :subscriptions,
-      [:subscriber_user_id, :subscribed_user_id],
+      [:from_user_id, :for_user_id],
       unique: true,
-      name: :index_subscriptions_on_subscriber_and_subscribed_user_id
+      name: :index_subscriptions_on_from_and_for_user_id
     )
   end
 

@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(version: 2022_02_17_160750) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.bigint "subscriber_user_id"
-    t.bigint "subscribed_user_id"
+    t.bigint "from_user_id"
+    t.bigint "for_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["subscribed_user_id"], name: "index_subscriptions_on_subscribed_user_id"
-    t.index ["subscriber_user_id", "subscribed_user_id"], name: "index_subscriptions_on_subscriber_and_subscribed_user_id", unique: true
-    t.index ["subscriber_user_id"], name: "index_subscriptions_on_subscriber_user_id"
+    t.index ["for_user_id"], name: "index_subscriptions_on_for_user_id"
+    t.index ["from_user_id", "for_user_id"], name: "index_subscriptions_on_from_and_for_user_id", unique: true
+    t.index ["from_user_id"], name: "index_subscriptions_on_from_user_id"
   end
 
   create_table "users", force: :cascade do |t|
