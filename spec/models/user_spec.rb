@@ -16,8 +16,10 @@ RSpec.describe User, type: :model do
   describe 'associations' do
     it { should have_many :subscribers }
     it { should have_many :subscriptions }
+  end
 
-    scenario 'andi subscribe barry' do
+  describe 'relations' do
+    scenario 'subscribers - andi subscribe barry' do
       andi  = create(:user, username: 'Andi')
       barry = create(:user, username: 'Barry')
 
