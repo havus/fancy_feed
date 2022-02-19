@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 # This model has the following table columns:
 # t.string "username"
 # t.string "display_name"
 
 class User < ApplicationRecord
-  validates_presence_of :username, :display_name
+  validates :username, presence: true
+  validates :display_name, presence: true
 
   with_options class_name: 'Subscription' do |assoc|
     assoc.has_many :subscribe_from_users, foreign_key: :from_user_id
